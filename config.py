@@ -1,11 +1,14 @@
-db_url = 'postgres://postgres:father@127.0.0.1:5432/jobmonitorservice'
+import os
+
+
 class Development(object):
     """
     Development environment configuration
     """
     DEBUG = True
     TESTING = False
-    SQLALCHEMY_DATABASE_URI = db_url
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
+
 
 class Production(object):
     """
@@ -13,7 +16,7 @@ class Production(object):
     """
     DEBUG = False
     TESTING = False
-    SQLALCHEMY_DATABASE_URI = db_url
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
 
 app_config = {
     'development': Development,

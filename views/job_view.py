@@ -1,5 +1,5 @@
 from flask import request, json, Response, Blueprint
-from ..models.job_model import JobModel, JobSchema
+from models.job_model import JobModel, JobSchema
 
 job_api = Blueprint('jobs', __name__)
 job_schema = JobSchema()

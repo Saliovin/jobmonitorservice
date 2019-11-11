@@ -1,10 +1,9 @@
-from src.models import job_model
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
-from src.app import create_app, db
+from app import app, db
 
 env_name = 'development'
-app = create_app(env_name)
+app = app(env_name)
 migrate = Migrate(app=app, db=db)
 manager = Manager(app=app)
 manager.add_command('db', MigrateCommand)

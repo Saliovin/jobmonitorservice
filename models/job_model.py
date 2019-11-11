@@ -1,6 +1,6 @@
 from marshmallow import fields, Schema
 from . import db
-from .state_model import StateSchema, StateModel
+from .state_model import StateSchema
 from sqlalchemy.dialects.postgresql import UUID
 
 

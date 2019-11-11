@@ -1,5 +1,5 @@
 from flask import request, json, Response, Blueprint, g
-from ..models.state_model import StateModel, StateSchema
+from models.state_model import StateModel, StateSchema
 
 state_api = Blueprint('state_api', __name__)
 state_schema = StateSchema()

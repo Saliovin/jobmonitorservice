@@ -1,3 +1,19 @@
+## How to run
+```
+EXPORT FLASK_ENV=<development | production>
+EXPORT DATABASE_URL=postgres://<name>:<password>@<host>:<port>/jobmonitorservice
+```
+By default host is 127.0.0.1 and port is 5432
+```
+python manage.py db init
+python manage.py db migrate
+python manage.py db upgrade
+```
+```
+python run.py
+```
+
+## API
 GET http://localhost:5000/modulelogs/
 - get all jobs
 
