@@ -36,19 +36,17 @@ def update(job_id):
     req_data = request.get_json()
     data = job_schema.load(req_data, partial=True)
     job = JobModel.get_one_job(job_id)
-
     job.update(data)
-    ser_user = job_schema.dump(job).values()
-
-    return custom_response(ser_user, 200)
+    ser_job = job_schema.dump(job)
+    return custom_response(ser_job, 200)
 
 
 @job_api.route('/<string:job_id>', methods=['DELETE'])
 def delete(job_id):
-    user = JobModel.get_one_job(job_id)
-    if not user:
+    job = JobModel.get_one_job(job_id)
+    if not job:
         return custom_response({'Error': 'Job not found'}, 404)
-    user.delete()
+    job.delete()
     return custom_response({'Message': 'Job deleted'}, 201)
 
 

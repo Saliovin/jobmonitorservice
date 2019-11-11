@@ -1,6 +1,6 @@
 from marshmallow import fields, Schema
 from . import db
-from .state_model import StateSchema
+from .state_model import StateSchema, StateModel
 from sqlalchemy.dialects.postgresql import UUID
 
 
@@ -8,7 +8,7 @@ class JobModel(db.Model):
     __tablename__ = 'jobs'
     id = db.Column(db.Integer, primary_key=True)
     job_id = db.Column(UUID(as_uuid=True), unique=True, nullable=False)
-    states = db.relationship('StateModel', backref='jobs', lazy=True)
+    states = db.relationship('StateModel', backref='jobs', lazy=True, cascade="all, delete-orphan")
 
     def __init__(self, data):
         self.job_id = data.get('job_id')
@@ -43,4 +43,3 @@ class JobSchema(Schema):
     id = fields.Int(dump_only=True)
     job_id = fields.UUID(required=True)
     states = fields.Nested(StateSchema, many=True)
-
